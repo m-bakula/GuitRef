@@ -40,3 +40,7 @@ class AbstrNoteTest(unittest.TestCase):
             target_note = AbstractNote(a_tuple[1])
             value = AbstrNoteTest.test_abstr_dict.get(a_tuple)
             self.assertEqual(root_note.get_interval(target_note), value)
+
+
+if __name__ == '__main__':
+    unittest.main()
