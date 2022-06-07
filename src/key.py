@@ -1,10 +1,13 @@
 from src.notes.abstr_note import AbstractNote
-from src import notegroup, scale, chord
+from src.notegroup import NoteGroup
+from src.scale import Scale
+from src.chord import Chord
+from src.key_dict import KeyDict
 
 
-class Key(notegroup.NoteGroup):
-    def __init__(self):
-        self.root = ''
+class Key(NoteGroup):
+    def __init__(self, root: AbstractNote, key_dict: KeyDict):
+        self.root = root
         self.signature = (0, None)
         self.chords = dict()
         self.notes = set()
@@ -16,17 +19,17 @@ class Key(notegroup.NoteGroup):
     def get_root(self):
         return self.root
 
-    def get_notes(self) -> list[AbstractNote]:
-        return list(self.notes)
+    def get_notes(self) -> set[AbstractNote]:
+        return self.notes
 
     def get_sig(self) -> tuple[int, str]:
         return self.signature
 
-    def get_chords(self) -> set[chord.Chord]:
+    def get_chords(self) -> set[Chord]:
         return set(self.chords)
 
-    def to_scale(self) -> scale.Scale:
+    def to_scale(self) -> Scale:
         pass
 
-    def has_chord(self, a_chord: chord.Chord) -> bool:
+    def has_chord(self, a_chord: Chord) -> bool:
         pass

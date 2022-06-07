@@ -1,8 +1,8 @@
 from src.notes.abstr_note import AbstractNote
-from src import notegroup
+from src.notegroup import NoteGroup
 
 
-class Scale(notegroup.NoteGroup):
+class Scale(NoteGroup):
     def __init__(self, root: AbstractNote, intervals: list[int], label: str = ''):
         self.root = root
         self.intervals = intervals

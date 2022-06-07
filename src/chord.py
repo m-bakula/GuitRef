@@ -1,8 +1,8 @@
 from src.notes.abstr_note import AbstractNote
-from src import notegroup
+from src.notegroup import NoteGroup
 
 
-class Chord(notegroup.NoteGroup):
+class Chord(NoteGroup):
     def __init__(self, root: AbstractNote, extensions: list[int], label: str = ''):
         self.root = root
         self.label = label
