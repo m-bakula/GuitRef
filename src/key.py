@@ -2,15 +2,17 @@ from src.notes.abstr_note import AbstractNote
 from src.notegroup import NoteGroup
 from src.scale import Scale
 from src.chord import Chord
-from src.key_dict import KeyDict
 
 
 class Key(NoteGroup):
-    def __init__(self, root: AbstractNote, key_dict: KeyDict):
+    def __init__(self, root: AbstractNote, chord_list: list[Chord]):
         self.root = root
         self.signature = (0, None)
-        self.chords = dict()
+        self.chords = {a_num: chord_list[a_num] for a_num in range(0, len(chord_list))}
         self.notes = set()
+
+        for a_chord in self.chords:
+            self.notes.union({a_note for a_note in a_chord})
 
     def __repr__(self):
         # TODO: implement
@@ -26,7 +28,7 @@ class Key(NoteGroup):
         return self.signature
 
     def get_chords(self) -> set[Chord]:
-        return set(self.chords)
+        return self.chords.values()
 
     def to_scale(self) -> Scale:
         pass
