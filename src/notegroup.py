@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Iterable
 
 from src.structure import functions
 from src.notes.abstr_note import AbstractNote
@@ -9,12 +10,12 @@ from src.loader import Loader
 class NoteGroup(ABC, Loader):
     """An abstract base class for objects containing multiple notes: scales, chords, keys"""
     @abstractmethod
-    def get_root(self):
+    def get_root(self) -> AbstractNote:
         """Should return the root note of a notegroup"""
         raise NotImplementedError
 
     @abstractmethod
-    def get_notes(self):
+    def get_notes(self) -> Iterable[AbstractNote]:
         """Should return all notes of a notegroup as a list"""
         raise NotImplementedError
 

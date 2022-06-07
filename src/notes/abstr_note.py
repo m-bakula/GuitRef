@@ -3,7 +3,7 @@ from src.structure import constants, functions, note_functions
 
 class AbstractNote:
     """Represents a single note class, e.g. C"""
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         try:
             if not functions.valid_name(name):
                 raise ValueError('Not a valid note name')
@@ -14,13 +14,13 @@ class AbstractNote:
             self.enh_name = note_functions.enh_name(name)
             self.position_list = constants.POSITIONS_DICT[self.name]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.name + ' (abstr)'
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.is_equal(other)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.enh_name)
 
     def is_equal(self, other) -> bool:

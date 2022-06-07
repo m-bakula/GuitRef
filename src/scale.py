@@ -3,7 +3,7 @@ from src.notegroup import NoteGroup
 
 
 class Scale(NoteGroup):
-    def __init__(self, root: AbstractNote, intervals: list[int], label: str = ''):
+    def __init__(self, root: AbstractNote, intervals: list[int], label: str = '') -> None:
         self.root = root
         self.intervals = intervals
         self.label = label
@@ -16,7 +16,7 @@ class Scale(NoteGroup):
             self.note_list.append(next_note)
             current_note = next_note
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return 'Scale: R={}, I={}, lab={}'.format(self.root, self.intervals, self.label)
 
     def get_root(self) -> AbstractNote:

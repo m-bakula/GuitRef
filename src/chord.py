@@ -3,7 +3,7 @@ from src.notegroup import NoteGroup
 
 
 class Chord(NoteGroup):
-    def __init__(self, root: AbstractNote, extensions: list[int], label: str = ''):
+    def __init__(self, root: AbstractNote, extensions: list[int], label: str = '') -> None:
         self.root = root
         self.label = label
 
@@ -12,7 +12,7 @@ class Chord(NoteGroup):
         for a_number in extensions:
             self.notes.add(self.root.add_interval(a_number))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return 'Chord: R={}, N={}, lab={}'.format(self.root, self.notes, self.label)
 
     def get_root(self) -> AbstractNote:

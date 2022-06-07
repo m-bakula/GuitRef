@@ -4,7 +4,7 @@ from src.notes.abstr_note import AbstractNote
 
 class Loader:
     """Mix-in class for loading and unloading scales/chords/keys from contents"""
-    def __init_subclass__(cls):
+    def __init_subclass__(cls) -> None:
         cls.loaded_objs = set()
 
     @classmethod
