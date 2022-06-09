@@ -3,3 +3,4 @@ src/__pycache__/
 .idea/
 .pytest_cache/
 venv/
+**.mypy_cache
