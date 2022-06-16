@@ -1,14 +1,37 @@
+from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
 
 
 class String:
     """Represents a single string tuned to a particular note"""
     def __init__(self, tuned_to: Note, frets: int) -> None:
-        # TODO: put a constraint on strings containing notes out of bounds
-        self.note_list = []
-        for a_fret in range(frets+1):
-            self.note_list.append(tuned_to.add_interval(a_fret))
+        try:
+            self.frets = frets
+            self.fret_range = range(self.frets + 1)
+            self.note_list = []
+            for a_fret in self.fret_range:
+                self.note_list.append(tuned_to.add_interval(a_fret))
+        except ValueError as error:
+            raise error
+
+    def get_notes(self) -> list[Note]:
+        return self.note_list
 
     def get_note_at_fret(self, fret_num: int) -> Note:
-        # fret_num can't be greater than self.frets:
-        return self.note_list[fret_num]
+        if fret_num not in self.fret_range:
+            raise ValueError("Fret number can't be greater than the number of frets")
+        return self.get_notes()[fret_num]
+
+    def find_note_str(self, search_note: AbstractNote) -> list[int]:
+        """Returns the list of fret numbers where a note is on the string (possibly empty if it's not)"""
+        output = []
+
+        if isinstance(search_note, Note):
+            for num in self.fret_range:
+                if self.get_notes()[num] == search_note:
+                    output.append(num)
+        else:
+            for num in self.fret_range:
+                if self.get_notes()[num].to_abstract() == search_note:
+                    output.append(num)
+        return output
