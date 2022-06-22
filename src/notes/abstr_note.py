@@ -10,9 +10,9 @@ class AbstractNote:
         except ValueError as error:
             raise error
         else:
-            self.name = name
-            self.enh_name = note_functions.enh_name(name)
-            self.position_list = constants.POSITIONS_DICT[self.name]
+            self.name: str = name
+            self.enh_name: str = note_functions.enh_name(name)
+            self.position_list: list[int] = constants.POSITIONS_DICT[self.name]
 
     def __repr__(self) -> str:
         return self.name + ' (abstr)'

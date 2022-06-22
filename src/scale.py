@@ -4,11 +4,11 @@ from src.notegroup import NoteGroup
 
 class Scale(NoteGroup):
     def __init__(self, root: AbstractNote, intervals: list[int], label: str = '') -> None:
-        self.root = root
-        self.intervals = intervals
-        self.label = label
+        self.root: AbstractNote = root
+        self.intervals: list[int] = intervals
+        self.label: str = label
 
-        self.note_list = []
+        self.note_list: list = []
         self.note_list.append(self.root)
         current_note = self.root
         for an_interval in self.intervals:

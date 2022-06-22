@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
 
@@ -6,9 +8,9 @@ class String:
     """Represents a single string tuned to a particular note"""
     def __init__(self, tuned_to: Note, frets: int) -> None:
         try:
-            self.frets = frets
-            self.fret_range = range(self.frets + 1)
-            self.note_list = []
+            self.frets: int = frets
+            self.fret_range: Iterable = range(self.frets + 1)
+            self.note_list: list[Note] = []
             for a_fret in self.fret_range:
                 self.note_list.append(tuned_to.add_interval(a_fret))
         except ValueError as error:

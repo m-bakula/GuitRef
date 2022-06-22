@@ -13,8 +13,8 @@ class Note(AbstractNote):
         except ValueError as error:
             raise error
         else:
-            self.octave = octave
-            self.position = self.position_list[octave]
+            self.octave: int = octave
+            self.position: int = self.position_list[octave]
 
     def __repr__(self) -> str:
         return self.name + str(self.octave) + ' (pos={})'.format(self.position)
