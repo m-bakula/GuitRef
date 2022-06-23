@@ -4,10 +4,10 @@ from src.notegroup import NoteGroup
 
 class Chord(NoteGroup):
     def __init__(self, root: AbstractNote, extensions: list[int], label: str = '') -> None:
-        self.root = root
-        self.label = label
+        self.root: AbstractNote = root
+        self.label: str = label
 
-        self.notes = set()
+        self.notes: set = set()
         self.notes.add(root)
         for a_number in extensions:
             self.notes.add(self.root.add_interval(a_number))
