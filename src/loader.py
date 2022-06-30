@@ -1,5 +1,5 @@
-from src.structure import functions
 from src.notes.abstr_note import AbstractNote
+from src.structure.functions import get_all_names
 
 
 class Loader:
@@ -25,7 +25,7 @@ class Loader:
                 label, *list_of_strings, = a_line.split()
                 arg = [int(a_string) for a_string in list_of_strings]
 
-                for a_name in functions.get_all_names():
+                for a_name in get_all_names():
                     full_label = a_name + label
                     new_obj = cls(AbstractNote(a_name), arg, full_label)
                     cls.loaded_objs.add(new_obj)

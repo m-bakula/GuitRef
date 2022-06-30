@@ -1,7 +1,7 @@
 import unittest
 
-from src.structure.constants import ALL_NOTES
 from src.notes.note import Note
+from src.structure.constants import ALL_NOTES
 
 
 class NoteTest(unittest.TestCase):

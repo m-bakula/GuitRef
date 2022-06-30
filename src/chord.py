@@ -1,5 +1,5 @@
-from src.notes.abstr_note import AbstractNote
 from src.notegroup import NoteGroup
+from src.notes.abstr_note import AbstractNote
 
 
 class Chord(NoteGroup):

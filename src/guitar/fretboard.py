@@ -1,7 +1,7 @@
+from src.guitar.string import String
+from src.notegroup import NoteGroup
 from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
-from src.notegroup import NoteGroup
-from src.guitar.string import String
 
 
 class Fretboard:

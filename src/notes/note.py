@@ -1,5 +1,6 @@
-from src.structure import functions
 from src.notes.abstr_note import AbstractNote
+from src.structure.functions import args_from_pos
+from src.structure.functions import valid_octave
 
 
 class Note(AbstractNote):
@@ -8,7 +9,7 @@ class Note(AbstractNote):
         try:
             # will still initialize AbstractNote if only octave is invalid
             AbstractNote.__init__(self, name)
-            if not functions.valid_octave(octave):
+            if not valid_octave(octave):
                 raise ValueError('Not a valid octave')
         except ValueError as error:
             raise error
@@ -41,7 +42,7 @@ class Note(AbstractNote):
     def add_interval(self, interval: int) -> 'Note':
         """Replaces AbstractNote.add_interval to account for octaves"""
         new_pos = self.position + interval
-        args = (functions.args_from_pos(new_pos).get('name'), functions.args_from_pos(new_pos).get('octave'))
+        args = (args_from_pos(new_pos).get('name'), args_from_pos(new_pos).get('octave'))
         return Note(*args)
 
     def get_interval(self, other) -> int:

@@ -1,10 +1,11 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from typing import Iterable
 
-from src.structure import functions
+from src.loader import Loader
 from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
-from src.loader import Loader
+from src.structure.functions import get_interval_name
 
 
 class NoteGroup(ABC, Loader):
@@ -40,5 +41,5 @@ class NoteGroup(ABC, Loader):
             interval_list.append(self.get_root().get_interval(a_note))
 
         interval_list.sort()
-        results_list = [(interval, functions.get_interval_name(interval)) for interval in interval_list]
+        results_list = [(interval, get_interval_name(interval)) for interval in interval_list]
         return results_list

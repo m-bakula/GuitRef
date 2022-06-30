@@ -1,7 +1,7 @@
 import unittest
 
-from src.notes import note
 from src import notegroup
+from src.notes import note
 
 name_list = src.structure.constants.NOTE_NAMES
 
