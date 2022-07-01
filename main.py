@@ -1,5 +1,6 @@
 import os
 
+from src.gui.window import Window
 from src.structure.functions import read_file
 from src.scale import Scale
 from src.chord import Chord
@@ -11,5 +12,5 @@ chords_content = read_file(os.path.join('config', 'chords.txt'))
 Scale.load_objects(scales_content)
 Chord.load_objects(chords_content)
 
-print(Scale.get_objects(), '\n')
-print(Chord.get_objects(), '\n')
+main_window = Window()
+main_window.mainloop()
