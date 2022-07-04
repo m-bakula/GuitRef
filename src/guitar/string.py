@@ -22,9 +22,10 @@ class String:
     def get_note_at_fret(self, fret_num: int) -> Note:
         if fret_num not in self.fret_range:
             raise ValueError("Fret number can't be greater than the number of frets")
-        return self.get_notes()[fret_num]
+        else:
+            return self.get_notes()[fret_num]
 
-    def find_note_str(self, search_note: AbstractNote) -> list[int]:
+    def find_note(self, search_note: AbstractNote) -> list[int]:
         """Returns the list of fret numbers where a note is on the string (possibly empty if it's not)"""
         output = []
 
