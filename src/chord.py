@@ -21,8 +21,10 @@ class Chord(NoteGroup):
     def get_notes(self) -> set[AbstractNote]:
         return self.notes
 
-    def add_note(self, new_note) -> None:
+    def add_note(self, new_note: AbstractNote) -> None:
+        """Adds a new note to the chord"""
         self.notes.add(new_note)
 
-    def remove_note(self, removed_note) -> None:
+    def remove_note(self, removed_note: AbstractNote) -> None:
+        """Removes a note from the chord"""
         self.notes.remove(removed_note)
