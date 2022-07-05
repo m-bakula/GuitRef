@@ -5,7 +5,7 @@ from src.gui.tlbr_frame import TlbrFrame
 
 
 class Window(tk.Tk):
-    def __init__(self,):
+    def __init__(self,) -> None:
         tk.Tk.__init__(self)
         self.title('GuitRef')
         self.frm_gtr: GtrFrame = GtrFrame(master=self)
@@ -14,10 +14,10 @@ class Window(tk.Tk):
         self.configure_grid()
         self.manage_frames()
 
-    def configure_grid(self):
-        self.columnconfigure(0, minsize=400)
-        self.rowconfigure([0, 1], minsize=200)
+    def configure_grid(self) -> None:
+        self.columnconfigure(0, minsize=400, weight=1)
+        self.rowconfigure([0, 1], minsize=200, weight=1)
 
-    def manage_frames(self):
-        self.frm_gtr.grid(row=0, column=0)
+    def manage_frames(self) -> None:
+        self.frm_gtr.grid(row=0, column=0,)
         self.frm_tlbr.grid(row=1, column=0)
