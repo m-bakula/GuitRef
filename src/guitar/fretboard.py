@@ -1,4 +1,4 @@
-from src.guitar.string import String
+from src.guitar.string import String  # type: ignore
 from src.notegroup import NoteGroup
 from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
@@ -10,18 +10,17 @@ class Fretboard:
         self.fretnum: int = fretnum
         self.tuning: list[Note] = [a_note for a_note in tuning]
         self.strings_list: list[String] = []
-        self.dict: dict[tuple[int, int], Note] = dict()
 
-        self.update_tuning(self.tuning)
-
-    def get_frets(self) -> int:
-        return self.fretnum
+        self.update_fretboard(tuning, fretnum)
 
     def get_tuning(self) -> list[Note]:
         return self.tuning
 
     def get_strings(self) -> list[String]:
         return self.strings_list
+
+    def get_str_num(self) -> int:
+        return len(self.strings_list)
 
     def get_note_at(self, str_num: int, fret_num: int) -> Note:
         return self.strings_list[str_num].get_note_at_fret(fret_num)

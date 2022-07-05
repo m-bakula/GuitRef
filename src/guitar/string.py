@@ -6,15 +6,21 @@ from src.notes.note import Note
 
 class String:
     """Represents a single string tuned to a particular note"""
-    def __init__(self, tuned_to: Note, frets: int) -> None:
+    def __init__(self, tuned_to: Note, fretnum: int) -> None:
         try:
-            self.frets: int = frets
-            self.fret_range: Iterable = range(self.frets + 1)
+            self.fretnum: int = fretnum
+            self.fret_range: Iterable = range(self.fretnum + 1)
             self.note_list: list[Note] = []
             for a_fret in self.fret_range:
                 self.note_list.append(tuned_to.add_interval(a_fret))
         except ValueError as error:
             raise error
+
+    def get_frets(self) -> int:
+        return self.fretnum
+
+    def get_range(self) -> Iterable[int]:
+        return self.fret_range
 
     def get_notes(self) -> list[Note]:
         return self.note_list
