@@ -27,6 +27,10 @@ class AbstractNote:
     def __hash__(self) -> int:
         return hash(self.enh_name)
 
+    def get_name(self) -> str:
+        """Returns the note name"""
+        return self.name
+
     def is_equal(self, other) -> bool:
         """Checks if other is the same (enharmonic) to self"""
         return self.enh_name == other.enh_name

@@ -32,6 +32,10 @@ class Note(AbstractNote):
     def __hash__(self) -> int:
         return hash(self.position)
 
+    def get_octave(self):
+        """Returns the note octave"""
+        return self.octave
+
     def is_equal(self, other) -> bool:
         """Extends AbstractNote.is_equal to account for octaves"""
         if AbstractNote.is_equal(self, other):
