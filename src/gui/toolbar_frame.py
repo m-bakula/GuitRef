@@ -1,9 +1,9 @@
 import tkinter as tk
 
 
-class TlbrFrame(tk.Frame):
-    def __init__(self, master, *args, **kwargs) -> None:
-        tk.Frame.__init__(self, master, *args, **kwargs)
+class ToolbarFrame(tk.Frame):
+    def __init__(self, *args, **kwargs) -> None:
+        tk.Frame.__init__(self, *args, **kwargs)
         self.btn_quit = None
         self.btn_options = None
 

@@ -1,15 +1,15 @@
 import tkinter as tk
 
-from src.gui.gtr_frame import GtrFrame
-from src.gui.tlbr_frame import TlbrFrame
+from src.gui.fretboard_frame import FretboardFrame
+from src.gui.toolbar_frame import ToolbarFrame
 
 
 class Window(tk.Tk):
     def __init__(self,) -> None:
         tk.Tk.__init__(self)
         self.title('GuitRef')
-        self.frm_gtr: GtrFrame = GtrFrame(master=self)
-        self.frm_tlbr: TlbrFrame = TlbrFrame(master=self)
+        self.frm_gtr: FretboardFrame = FretboardFrame(master=self)
+        self.frm_tlbr: ToolbarFrame = ToolbarFrame(master=self)
 
         self.configure_grid()
         self.manage_frames()
