@@ -13,11 +13,10 @@ ALL_NOTES = fill_notes(NOTE_NAMES, NOTE_OCTAVES)
 
 def indices_of(name: str) -> list[int]:
     output = []
-    i = 0
-    while i < len(ALL_NOTES):
-        if ALL_NOTES[i][0] == name:
-            output.append(i)
-        i += 1
+
+    for index, arg_tuple in enumerate(ALL_NOTES):
+        if arg_tuple[0] == name:
+            output.append(index)
     return output
 
 
