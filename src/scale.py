@@ -7,8 +7,11 @@ class Scale(NoteGroup):
         self.root: AbstractNote = root
         self.intervals: list[int] = intervals
         self.label: str = label
-
         self.note_list: list = []
+
+        self.fill_note_list()
+
+    def fill_note_list(self):
         self.note_list.append(self.root)
         current_note = self.root
         for an_interval in self.intervals:

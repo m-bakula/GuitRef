@@ -5,11 +5,15 @@ from src.notes.abstr_note import AbstractNote
 class Chord(NoteGroup):
     def __init__(self, root: AbstractNote, extensions: list[int], label: str = '') -> None:
         self.root: AbstractNote = root
+        self.extensions = extensions
         self.label: str = label
-
         self.notes: set = set()
-        self.notes.add(root)
-        for a_number in extensions:
+
+        self.fill_notes()
+
+    def fill_notes(self):
+        self.notes.add(self.root)
+        for a_number in self.extensions:
             self.notes.add(self.root.add_interval(a_number))
 
     def __repr__(self) -> str:
