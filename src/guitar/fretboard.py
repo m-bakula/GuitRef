@@ -1,4 +1,4 @@
-from src.guitar.string import String  # type: ignore
+from src.guitar.string import String
 from src.notegroup import NoteGroup
 from src.notes.abstr_note import AbstractNote
 from src.notes.note import Note
