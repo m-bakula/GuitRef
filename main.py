@@ -1,16 +1,14 @@
 import os
 
+from settings import Settings
 from src.gui.window import Window
-from src.structure.functions import read_file
-from src.scale import Scale
-from src.chord import Chord
 
+current_settings = Settings()
 
-scales_content = read_file(os.path.join('config', 'scales.txt'))
-chords_content = read_file(os.path.join('config', 'chords.txt'))
-
-Scale.load_recipes(scales_content)
-Chord.load_recipes(chords_content)
+if os.path.exists('settings.pickle'):
+    current_settings.load_settings()
+else:
+    current_settings.save_settings()
 
 main_window = Window()
 main_window.mainloop()
