@@ -19,8 +19,8 @@ class Loader:
                 pass
             else:
                 label, *list_of_strings, = a_line.split()
-                arg = (int(a_string) for a_string in list_of_strings)
-                recipe_tuple = (label, arg)
+                arg = [int(a_string) for a_string in list_of_strings]
+                recipe_tuple = (label, tuple(arg))
                 cls.loaded_recipes.add(recipe_tuple)
 
     @classmethod
