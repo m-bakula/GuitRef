@@ -9,8 +9,8 @@ from src.chord import Chord
 scales_content = read_file(os.path.join('config', 'scales.txt'))
 chords_content = read_file(os.path.join('config', 'chords.txt'))
 
-Scale.load_objects(scales_content)
-Chord.load_objects(chords_content)
+Scale.load_recipes(scales_content)
+Chord.load_recipes(chords_content)
 
 main_window = Window()
 main_window.mainloop()
