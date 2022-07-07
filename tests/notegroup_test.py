@@ -2,8 +2,7 @@ import unittest
 
 from src import notegroup
 from src.notes import note
-
-name_list = src.structure.constants.NOTE_NAMES
+from src.structure.constants import NOTE_NAMES
 
 
 class ExampleClass(notegroup.NoteGroup):
@@ -19,7 +18,7 @@ class ExampleClass(notegroup.NoteGroup):
         return self.root
 
     def get_notes(self):
-        note_list = [note.Note(a_name, 1) for a_name in name_list]
+        note_list = [note.Note(a_name, 1) for a_name in NOTE_NAMES]
         return note_list
 
 
@@ -32,13 +31,13 @@ class NoteGroupTest(unittest.TestCase):
         test_lines = ['maj 2 2 1 2 2 2', 'test 1 2 3 4 5 6 7 8 9', 'blank 0']
         results_dict = {}
 
-        ExampleClass.load_objects(test_lines)
+        ExampleClass.load_recipes(test_lines)
 
         # fill out the results_dict with correct results
         for a_line in test_lines:
             label, *strings_list, = a_line.split()
             args_list = [int(string) for string in strings_list]
-            labels_list = [name + label for name in name_list]
+            labels_list = [name + label for name in NOTE_NAMES]
             results_dict[a_line] = [(a_label, args_list) for a_label in labels_list]
 
         # create a list of tuples with appropriate labels and args from results_dict
@@ -47,17 +46,17 @@ class NoteGroupTest(unittest.TestCase):
             all_values += value_list
 
         # assert that every object has a tuple of attributes corresponding to one in all_values
-        for an_object in ExampleClass.loaded_objs:
+        for an_object in ExampleClass.loaded_recipes:
             self.assertIsInstance(an_object, ExampleClass)
             test_pair = (an_object.label, an_object.args)
             self.assertIn(test_pair, all_values)
 
         ExampleClass.unload_objects()
-        self.assertEqual(ExampleClass.loaded_objs, set())
+        self.assertEqual(ExampleClass.loaded_recipes, set())
 
     def test_get_notes_abstr(self):
         """Tests get_notes_abstr method using a dummy subclass of notegroup"""
-        abstr_set = set([note.AbstractNote(a_name) for a_name in name_list])
+        abstr_set = set([note.AbstractNote(a_name) for a_name in NOTE_NAMES])
         self.assertEqual(abstr_set, example_object.get_notes_abstr())
 
     def test_is_enh(self):
