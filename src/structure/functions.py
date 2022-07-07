@@ -5,14 +5,17 @@ from src.structure import constants
 
 # FUNCTIONS FOR READING FROM constants
 def get_all_names() -> list[str]:
+    """Returns all note names from the constants module via constants.NOTE_NAMES"""
     return constants.NOTE_NAMES
 
 
 def get_interval_name(interval: int) -> str:
+    """Returns the name of an interval of integer semitones, using constants.INTERVALS_DICT"""
     return constants.INTERVALS_DICT.get(interval)
 
 
 def args_from_pos(position: int) -> dict:
+    """Returns a dictionary with name and octave values for a note with given position in constants.ALL_NOTES"""
     if not valid_position(position):
         raise ValueError('Position invalid')
     else:
