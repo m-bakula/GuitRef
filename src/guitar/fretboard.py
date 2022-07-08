@@ -44,7 +44,7 @@ class Fretboard:
         self.update_fretboard()
 
     def find_note(self, a_note: AbstractNote) -> list[tuple[int, list[int]]]:
-        """"Returns a list of tuples with numbers of strings and frets where a given note is located"""
+        """"Returns a list of tuples with string number and output of find_note(a_note) for each string"""
         all_notes = []
 
         for str_num, a_string in enumerate(self.strings_list):

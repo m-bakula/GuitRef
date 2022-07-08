@@ -39,7 +39,7 @@ class String:
 
     def find_note(self, search_note: AbstractNote) -> list[int]:
         """Returns the list of fret numbers where a note is on the string (possibly empty if it's not)"""
-        output = []
+        output: list[int] = []
 
         if isinstance(search_note, Note):
             for num in self.fret_range:
