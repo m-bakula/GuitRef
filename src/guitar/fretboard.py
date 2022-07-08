@@ -45,13 +45,28 @@ class Fretboard:
 
     def find_note(self, a_note: AbstractNote) -> list[tuple[int, list[int]]]:
         """"Returns a list of tuples with string number and output of find_note(a_note) for each string"""
-        all_notes = []
+        all_notes: list = []
 
         for str_num, a_string in enumerate(self.strings_list):
             fret_nums = a_string.find_note(a_note)
             all_notes.append((str_num, fret_nums))
         return all_notes
 
-    def find_notegroup(self, a_notegroup: NoteGroup):
-        """Returns find_note() for every note in a given notegroup"""
-        pass
+    def find_notegroup(self, a_notegroup: NoteGroup) -> list[tuple[int, list[int]]]:
+        """Merges outputs of find_note() for every note in a given notegroup and returns them as a single list"""
+        output: list = []
+        temp_list: list = []
+
+        # TODO: make recursive later
+        for a_note in a_notegroup.get_notes():
+            temp_list.extend(self.find_note(a_note))
+
+        for str_num in range(self.get_str_num()):
+            str_list: list = []
+            for a_tuple in temp_list:
+                if a_tuple[0] == str_num:
+                    str_list.extend(a_tuple[1])
+            str_list.sort()
+            output.append((str_num, str_list))
+
+        return output
