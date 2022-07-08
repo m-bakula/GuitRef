@@ -30,3 +30,9 @@ class FretboardFrame(tk.Frame):
                 note = a_string.get_note_at_fret(fret_num)
                 self.fret_dict[pos_tuple] = FretWidget(master=self, bound_note=note)
                 self.fret_dict[pos_tuple].grid(row=str_num, column=fret_num, sticky='nsew')
+
+    def highlight_object(self, notegroup):
+        pass
+
+    def remove_highlight(self):
+        pass
