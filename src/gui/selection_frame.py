@@ -1,20 +1,24 @@
 import tkinter as tk
 
+from settings import Settings
 from src.chord import Chord
 from src.gui.fretboard_frame import FretboardFrame
 from src.gui.label_frame import LabelFrame
 from src.notes.abstr_note import AbstractNote
 from src.scale import Scale
 from src.structure.constants import NOTE_NAMES
-# to be deleted
-from src.structure.functions import read_file
-import os.path
 
 
 class SelectionFrame(tk.Frame):
-    def __init__(self, fretboard_frame: FretboardFrame, label_frame: LabelFrame, *args, **kwargs) -> None:
+    def __init__(self,
+                 settings: Settings,
+                 fretboard_frame: FretboardFrame,
+                 label_frame: LabelFrame,
+                 *args, **kwargs) -> None:
         tk.Frame.__init__(self, *args, **kwargs)
-        Scale.load_recipes(read_file(os.path.join('config', 'scales.txt')))
+        self.settings = settings
+        Scale.load_recipes(self.settings.scales)
+        Chord.load_recipes(self.settings.chords)
         self.fretboard_frame = fretboard_frame
         self.label_frame = label_frame
 

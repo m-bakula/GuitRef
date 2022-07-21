@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from settings import Settings
 from src.gui.fretboard_frame import FretboardFrame
 from src.gui.label_frame import LabelFrame
 from src.gui.selection_frame import SelectionFrame
@@ -7,15 +8,24 @@ from src.gui.toolbar_frame import ToolbarFrame
 
 
 class Window(tk.Tk):
-    def __init__(self) -> None:
+    def __init__(self, settings: Settings) -> None:
         tk.Tk.__init__(self)
+        self.settings: Settings = settings
+        self.settings.colors['bg'] = self.cget('bg')
         self.title('GuitRef')
-        self.frm_fretbrd: FretboardFrame = FretboardFrame(master=self)
-        self.frm_tlbr: ToolbarFrame = ToolbarFrame(master=self)
-        self.frm_label: LabelFrame = LabelFrame(master=self)
-        self.frm_slct: SelectionFrame = SelectionFrame(master=self, fretboard_frame=self.frm_fretbrd,
+        self.frm_fretbrd: FretboardFrame = FretboardFrame(master=self,
+                                                          settings=self.settings,
+                                                          init_fretbrd=self.settings.fretbrd)
+        self.frm_tlbr: ToolbarFrame = ToolbarFrame(master=self,
+                                                   settings=self.settings)
+        self.frm_label: LabelFrame = LabelFrame(master=self,
+                                                settings=self.settings)
+        self.frm_slct: SelectionFrame = SelectionFrame(master=self,
+                                                       settings=self.settings,
+                                                       fretboard_frame=self.frm_fretbrd,
                                                        label_frame=self.frm_label)
 
+        self.configure(bg=settings.colors.get('bg'))
         self.configure_grid()
         self.manage_frames()
 

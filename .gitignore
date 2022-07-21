@@ -4,3 +4,4 @@ src/__pycache__/
 .pytest_cache/
 venv/
 **.mypy_cache
+settings.pickle

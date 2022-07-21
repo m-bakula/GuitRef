@@ -1,9 +1,12 @@
 import tkinter as tk
 
+from settings import Settings
+
 
 class ToolbarFrame(tk.Frame):
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, settings: Settings, *args, **kwargs) -> None:
         tk.Frame.__init__(self, *args, **kwargs)
+        self.settings = settings
         self.btn_quit = None
         self.btn_options = None
 
