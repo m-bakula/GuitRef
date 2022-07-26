@@ -1,6 +1,6 @@
 from src.guitar.string import String
 from src.notegroup import NoteGroup
-from src.notes.abstr_note import AbstractNote
+from src.notes.note_class import NoteClass
 from src.notes.note import Note
 
 
@@ -43,7 +43,7 @@ class Fretboard:
         self.fretnum = new_fretnum
         self.update_fretboard()
 
-    def find_note(self, a_note: AbstractNote) -> list[tuple[int, list[int]]]:
+    def find_note(self, a_note: NoteClass) -> list[tuple[int, list[int]]]:
         """"Returns a list of tuples with string number and output of find_note(a_note) for each string"""
         all_notes: list = []
 

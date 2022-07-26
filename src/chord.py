@@ -1,10 +1,10 @@
+from src.note_abstr import NoteAbstract
 from src.notegroup import NoteGroup
-from src.notes.abstr_note import AbstractNote
 
 
 class Chord(NoteGroup):
-    def __init__(self, root: AbstractNote, extensions: list[int], label: str = '') -> None:
-        self.root: AbstractNote = root
+    def __init__(self, root: NoteAbstract, extensions: list[int], label: str = '') -> None:
+        self.root: NoteAbstract = root
         self.extensions = extensions
         self.label: str = label
         self.notes: set = set()
@@ -19,16 +19,16 @@ class Chord(NoteGroup):
     def __repr__(self) -> str:
         return 'Chord: R={}, N={}, lab={}'.format(self.root, self.notes, self.label)
 
-    def get_root(self) -> AbstractNote:
+    def get_root(self) -> NoteAbstract:
         return self.root
 
-    def get_notes(self) -> set[AbstractNote]:
+    def get_notes(self) -> set[NoteAbstract]:
         return self.notes
 
-    def add_note(self, new_note: AbstractNote) -> None:
+    def add_note(self, new_note: NoteAbstract) -> None:
         """Adds a new note to the chord"""
         self.notes.add(new_note)
 
-    def remove_note(self, removed_note: AbstractNote) -> None:
+    def remove_note(self, removed_note: NoteAbstract) -> None:
         """Removes a note from the chord"""
         self.notes.remove(removed_note)

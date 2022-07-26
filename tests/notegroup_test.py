@@ -56,7 +56,7 @@ class NoteGroupTest(unittest.TestCase):
 
     def test_get_notes_abstr(self):
         """Tests get_notes_abstr method using a dummy subclass of notegroup"""
-        abstr_set = set([note.AbstractNote(a_name) for a_name in NOTE_NAMES])
+        abstr_set = set([note.NoteClass(a_name) for a_name in NOTE_NAMES])
         self.assertEqual(abstr_set, example_object.get_notes_abstr())
 
     def test_is_enh(self):

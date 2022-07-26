@@ -1,14 +1,14 @@
-from src.notes.abstr_note import AbstractNote
+from src.notes.note_class import NoteClass
 from src.structure.functions import args_from_pos
 from src.structure.functions import valid_octave
 
 
-class Note(AbstractNote):
+class Note(NoteClass):
     """Represents a particular musical note in range given by ALL_NOTES, e.g. A2"""
     def __init__(self, name: str, octave: int) -> None:
         try:
-            # will still initialize AbstractNote if only octave is invalid
-            AbstractNote.__init__(self, name)
+            # will still initialize NoteClass if only octave is invalid
+            NoteClass.__init__(self, name)
             if not valid_octave(octave):
                 raise ValueError('Not a valid octave')
         except ValueError as error:
@@ -20,7 +20,7 @@ class Note(AbstractNote):
     def __repr__(self) -> str:
         return self.name + str(self.octave) + ' (pos={})'.format(self.position)
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: 'Note') -> bool:
         if self.position < other.position:
             return True
         else:
@@ -32,28 +32,28 @@ class Note(AbstractNote):
     def __hash__(self) -> int:
         return hash(self.position)
 
-    def get_octave(self):
+    def get_octave(self) -> int:
         """Returns the note octave"""
         return self.octave
 
-    def is_equal(self, other) -> bool:
-        """Extends AbstractNote.is_equal to account for octaves"""
-        if AbstractNote.is_equal(self, other):
-            return self.octave == other.octave
+    def is_equal(self, other: 'Note') -> bool:
+        """Extends NoteClass.is_equal to account for octaves"""
+        if NoteClass.is_equal(self, other):
+            return self.get_octave() == other.get_octave()
         else:
             return False
 
     def add_interval(self, interval: int) -> 'Note':
-        """Replaces AbstractNote.add_interval to account for octaves"""
+        """Replaces NoteClass.add_interval to account for octaves"""
         new_pos = self.position + interval
         args = (args_from_pos(new_pos).get('name'), args_from_pos(new_pos).get('octave'))
         return Note(*args)
 
-    def get_interval(self, other) -> int:
-        """Replaces AbstractNote.get_interval. Returns number of semitones from self to other note.
+    def get_interval(self, other: 'Note') -> int:
+        """Replaces NoteClass.get_interval. Returns number of semitones from self to other note.
         Positive when going up, negative when down"""
         return other.position - self.position
 
-    def to_abstract(self) -> AbstractNote:
+    def to_abstract(self) -> NoteClass:
         """Returns the abstract note class of a given note"""
-        return AbstractNote(self.name)
+        return NoteClass(self.name)

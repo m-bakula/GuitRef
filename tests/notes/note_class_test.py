@@ -1,6 +1,6 @@
 import unittest
 
-from src.notes.abstr_note import AbstractNote
+from src.notes.note_class import NoteClass
 
 
 class AbstrNoteTest(unittest.TestCase):
@@ -20,24 +20,24 @@ class AbstrNoteTest(unittest.TestCase):
                        ('C', 'G'): 7, ('C', 'G#'): 8, ('C', 'A'): 9, ('C', 'Bb'): 10, ('C', 'B'): 11, ('C', 'C'): 0}
 
     def test_abstr_notes(self):
-        """Tests if AbstractNote objects are properly instantiated"""
+        """Tests if NoteClass objects are properly instantiated"""
         for a_key in AbstrNoteTest.pos_dict.keys():
-            abs_note = AbstractNote(a_key)
+            abs_note = NoteClass(a_key)
             self.assertEqual(abs_note.position_list, AbstrNoteTest.pos_dict.get(a_key))
 
     def test_add_interval(self):
         """Tests for all combinations of adding intervals to a note"""
         for a_tuple in AbstrNoteTest.test_dict.keys():
             good_value = AbstrNoteTest.test_dict.get(a_tuple)
-            start_note, test_interval = AbstractNote(a_tuple[0]), a_tuple[1]
+            start_note, test_interval = NoteClass(a_tuple[0]), a_tuple[1]
             test_value = start_note.add_interval(test_interval).name
             self.assertEqual(test_value, good_value)
 
     def test_get_interval(self):
         """Tests all abstract note pairs for getting the correct interval"""
         for a_tuple in AbstrNoteTest.test_abstr_dict.keys():
-            root_note = AbstractNote(a_tuple[0])
-            target_note = AbstractNote(a_tuple[1])
+            root_note = NoteClass(a_tuple[0])
+            target_note = NoteClass(a_tuple[1])
             value = AbstrNoteTest.test_abstr_dict.get(a_tuple)
             self.assertEqual(root_note.get_interval(target_note), value)
 

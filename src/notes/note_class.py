@@ -1,3 +1,4 @@
+from src.note_abstr import NoteAbstract
 from src.structure.constants import POSITIONS_DICT
 from src.structure.functions import valid_name
 from src.structure.note_functions import add_interval_abstr
@@ -5,7 +6,7 @@ from src.structure.note_functions import enh_name
 from src.structure.note_functions import get_interval_abstr
 
 
-class AbstractNote:
+class NoteClass(NoteAbstract):
     """Represents a single note class, e.g. C"""
     def __init__(self, name: str) -> None:
         try:
@@ -27,20 +28,20 @@ class AbstractNote:
     def __hash__(self) -> int:
         return hash(self.enh_name)
 
+    def is_equal(self, other: 'NoteClass') -> bool:
+        """Checks if other is the same (enharmonic) to self"""
+        return self.enh_name == other.enh_name
+
     def get_name(self) -> str:
         """Returns the note name"""
         return self.name
 
-    def is_equal(self, other) -> bool:
-        """Checks if other is the same (enharmonic) to self"""
-        return self.enh_name == other.enh_name
-
-    def add_interval(self, interval: int) -> 'AbstractNote':
+    def add_interval(self, interval: int) -> 'NoteClass':
         """Returns abstract note that is an integer (can be non-positive) of semitones apart from self"""
         new_name = add_interval_abstr(self.name, interval)
-        return AbstractNote(new_name)
+        return NoteClass(new_name)
 
-    def get_interval(self, other) -> int:
+    def get_interval(self, other: 'NoteClass') -> int:
         """Returns a number of semitones needed to get from self to other (always positive)"""
         return get_interval_abstr(self.enh_name, other.enh_name)
 

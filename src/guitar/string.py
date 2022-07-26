@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from src.notes.abstr_note import AbstractNote
+from src.notes.note_class import NoteClass
 from src.notes.note import Note
 
 
@@ -37,7 +37,7 @@ class String:
         else:
             return self.get_notes()[fret_num]
 
-    def find_note(self, search_note: AbstractNote) -> list[int]:
+    def find_note(self, search_note: NoteClass) -> list[int]:
         """Returns the list of fret numbers where a note is on the string (possibly empty if it's not)"""
         output: list[int] = []
 

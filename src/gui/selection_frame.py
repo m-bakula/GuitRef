@@ -4,7 +4,7 @@ from settings import Settings
 from src.chord import Chord
 from src.gui.fretboard_frame import FretboardFrame
 from src.gui.label_frame import LabelFrame
-from src.notes.abstr_note import AbstractNote
+from src.notes.note_class import NoteClass
 from src.scale import Scale
 from src.structure.constants import NOTE_NAMES
 
@@ -61,7 +61,7 @@ class SelectionFrame(tk.Frame):
         label = selected_name + selected_recipe
 
         if selected_name != self.name_init and selected_recipe != self.recipe_init:
-            root = AbstractNote(selected_name)
+            root = NoteClass(selected_name)
             intervals = Scale.get_recipes().get(selected_recipe)
             obj_to_show = Scale(root, intervals, label)
             self.fretboard_frame.highlight_object(obj_to_show)
